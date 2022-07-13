@@ -3,8 +3,8 @@ from django.urls import path
 from bookstore.views import *
 
 urlpatterns = [
-    path('', base_books, name='books'),
-    path('book/<int:index>', base_list, name='base'),
-    path('author/<int:index_author>/', author_list, name='author'),
-    path('author_book/<int:in_author>/author_book', author_book, name='author_book')
-]
+    path('', list_books, name='list_books'),                            #+ List of all books
+    path('book/<int:index>', current_book, name='current_book'),        #+ Show current book
+    path('author/<int:index_author>/', about_author, name='author'),    #+ Show info about author
+    path('author_book/<int:index_author>/author_book', author_book, name='author_book')     # \
+]                                                                       #+ Show info about all books of this author

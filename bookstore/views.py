@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 books = [
     {'id': 1,
      'title': 'Fluent Python',
@@ -49,21 +48,20 @@ authors = [
     'id': 2,
     'first_name': 'Paul',
     'last_name': 'Barry',
-    'age': 70}]
+    'age': 70}
+]
 
-def base_books(reqeust):
-    return render(reqeust, 'bookstore/current_book.html', context={'books': books})
+def list_books(request):                            #+ List of all books
+    return render(request, 'bookstore/List_books.html', context={'books': books})
 
-def base_list(reqeust, index):
+def current_book(request, index):                   #+ Show current book
     book = books[int(index) - 1]
-    return render(reqeust, 'bookstore/index.html', context=book)
+    return render(request, 'bookstore/Current_book.html', context=book)
 
-def author_list(reqeust, index_author):
+def about_author(request, index_author):            #+ Show info about author
     author = authors[int(index_author) - 1]
-    return render(reqeust, 'bookstore/author_index.html', context=author)
+    return render(request, 'bookstore/About_author.html', context=author)
 #
-def author_book(reqeust, in_author):
-    author_book = list(filter(lambda book: book['author_id'] == in_author, books))
-    return render(reqeust, 'bookstore/author_book.html', context={'author_book': author_book})
-
-# Create your views here.
+def author_book(request, index_author):             #+ Show info about all books of this author
+    author_book = list(filter(lambda book: book['author_id'] == index_author, books))
+    return render(request, 'bookstore/Author_book.html', context={'author_book': author_book})
